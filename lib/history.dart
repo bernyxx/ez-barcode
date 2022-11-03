@@ -2,7 +2,7 @@ import 'package:ez_barcode/barcodes.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:date_format/date_format.dart';
+import 'package:intl/intl.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -166,19 +166,9 @@ class _HistoryState extends State<History> {
                       child: ListTile(
                         title: Text('${_groups[index]['count(main)']} codici'),
                         subtitle: Text(
-                          formatDate(dt, [
-                            dd,
-                            '/',
-                            mm,
-                            '/',
-                            yyyy,
-                            '  ',
-                            HH,
-                            ':',
-                            mm,
-                            ':',
-                            ss
-                          ]),
+                          DateFormat('dd/MM/yyyy HH:mm:ss')
+                              .format(dt)
+                              .toString(),
                         ),
                       ),
                     ),
